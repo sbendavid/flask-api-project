@@ -1,4 +1,4 @@
-# Flask RESTful API Example
+# Flask RESTful API
 
 This project is a simple Flask web server that exposes a RESTful API endpoint. It responds with a JSON object containing the client's IP address, a static location (New York), and a greeting message that includes the temperature.
 
@@ -8,7 +8,7 @@ Set up a basic web server in your preferred stack. Deploy it to any free hosting
 
 ### Endpoint
 
-GET <server-origin-url>/api/hello?visitor_name=Mark
+GET [Endpoint](https://flask-api-project-seven.vercel.app/api/hello?visitor_name=Mark)
 
 ### Response
 
@@ -25,8 +25,8 @@ GET <server-origin-url>/api/hello?visitor_name=Mark
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/sbendavid/flask-api-project.git
+cd flask-api-project
 ```
 
 2. Install dependencies:
@@ -43,4 +43,4 @@ python app.py
 
 4. Access the API:
    Open your web browser or use a tool like curl or Postman to access the following URL:
-   [text](http://127.0.0.1:5000/api/hello?visitor_name=Mark)
+   [Endpoint](https://flask-api-project-seven.vercel.app/api/hello?visitor_name=Mark)

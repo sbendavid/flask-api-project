@@ -1,4 +1,4 @@
-# Flask RESTful API
+# Flask RESTful API Example
 
 This project is a simple Flask web server that exposes a RESTful API endpoint. It responds with a JSON object containing the client's IP address, a static location (New York), and a greeting message that includes the temperature.
 

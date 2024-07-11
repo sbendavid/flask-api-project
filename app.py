@@ -1,28 +1,29 @@
-from flask import Flask, request, jsonify
-from flask_restful import Api, Resource
-import requests
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager
+from flask_bcrypt import Bcrypt
+from flask_restful import Api
 
-app = Flask(__name__)
-api = Api(app)
+# Initialize extensions
+db = SQLAlchemy()
+jwt = JWTManager()
+bcrypt = Bcrypt()
 
-class Hello(Resource):
-    def get(self):
-        visitor_name = request.args.get('visitor_name', 'Visitor')
-        client_ip = request.remote_addr
-        
-        # For demonstration, use a static city and temperature.
-        # Ideally, you would use a service to determine the location based on the IP and get the temperature.
-        city = "New York"
-        temperature = 11  # Static temperature for demonstration
+def create_app():
+    app = Flask(__name__)
+    
+    # Pass the database URL directly here
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://onochie_user:Password1@localhost/onochie_db'
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-        response = {
-            "client_ip": client_ip,
-            "location": city,
-            "greeting": f"Hello, {visitor_name}!, the temperature is {temperature} degrees Celsius in {city}"
-        }
-        return jsonify(response)
+    db.init_app(app)
 
-api.add_resource(Hello, '/api/hello')
+    from routes.auth import auth_bp
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+
+    return app
 
 if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True)
+
